@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/06/2024 às 05:33
+-- Tempo de geração: 29/06/2024 às 06:22
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -24,17 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `adms`
+-- Estrutura para tabela `tbadms`
 --
 
-CREATE TABLE `adms` (
+CREATE TABLE `tbadms` (
   `id_adm` int(11) NOT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `idade` int(11) DEFAULT NULL,
-  `telefone` varchar(25) DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbadms`
+--
+
+INSERT INTO `tbadms` (`id_adm`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
+(1, 'Isabella', 19, '11934543676', 'isa@adm.com', '123456');
 
 -- --------------------------------------------------------
 
@@ -43,7 +50,7 @@ CREATE TABLE `adms` (
 --
 
 CREATE TABLE `tbfuncionarios` (
-  `id_costumer` int(11) NOT NULL,
+  `id_funcionario` int(11) NOT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `idade` int(11) DEFAULT NULL,
   `telefone` varchar(20) DEFAULT NULL,
@@ -55,44 +62,53 @@ CREATE TABLE `tbfuncionarios` (
 -- Despejando dados para a tabela `tbfuncionarios`
 --
 
-INSERT INTO `tbfuncionarios` (`id_costumer`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
-(1, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123'),
-(2, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123'),
-(3, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123'),
-(4, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123'),
-(5, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123');
+INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
+(1, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbprodutos`
+--
+
+CREATE TABLE `tbprodutos` (
+  `produto` varchar(200) DEFAULT NULL,
+  `qtde` int(11) DEFAULT NULL,
+  `valor` decimal(10,2) DEFAULT NULL,
+  `foto` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `adms`
+-- Índices de tabela `tbadms`
 --
-ALTER TABLE `adms`
+ALTER TABLE `tbadms`
   ADD PRIMARY KEY (`id_adm`);
 
 --
 -- Índices de tabela `tbfuncionarios`
 --
 ALTER TABLE `tbfuncionarios`
-  ADD PRIMARY KEY (`id_costumer`);
+  ADD PRIMARY KEY (`id_funcionario`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `adms`
+-- AUTO_INCREMENT de tabela `tbadms`
 --
-ALTER TABLE `adms`
-  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbadms`
+  MODIFY `id_adm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbfuncionarios`
 --
 ALTER TABLE `tbfuncionarios`
-  MODIFY `id_costumer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
