@@ -14,9 +14,10 @@
 <body>
     <?php
        include_once '../factory/conexaobd.php';
+
        $conn = new CaminhoBd();
       
-        $consulta = "select * from tbprodutos";  
+        $consulta = "select * from tbfuncionarios";  
 
         $resultado = $conn->getConexaoBd()->prepare($consulta);
         $resultado->execute();   
@@ -25,15 +26,16 @@
     ?>
     <form action="">
         <br/>
-        Produto:
-        <input type="text" name="cxproduto" value="<?php echo $cont['produto']?>"/><br/>
-        Quantidade:
-        <input type="text" name="cxqtde" value="<?php echo $cont['qtde']?>"/><br/>
-        Valor:
-        <input type="text" name="cxvalor" value="<?php echo $cont['valor']?>"/><br/>
-        Foto:<br/>
-        <?php echo'<img src="../foto/'.$cont['foto'].'" alt="descrição da imagem" class="fotos"><br>';?><br/>
-        <a class="btexcluir" href="excluirprod.php?id=<?php echo $cont['cod'];?>">X</a>  
+        Nome:
+        <input type="text" name="cxproduto" value="<?php echo $cont['nome']?>"/><br/>
+        Idade:
+        <input type="number" name="cxidade" value="<?php echo $cont['idade']?>"/><br/>
+        Telefone:
+        <input type="text" name="cxtelefone" value="<?php echo $cont['telefone']?>"/><br/>
+        Email:
+        <input type="text" name="cxemail" value="<?php echo $cont['email']?>"/><br/>
+
+        <a class="btexcluir" href="excluirfunc.php?id=<?php echo $cont['id_funcionario'];?>">X</a>  
         <br/>
         <br/>
     </form>

@@ -22,21 +22,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/logo.jpg" />
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/form.css">
     <title>Login</title>
 </head>
 <body>
     <div class="LoginField">
         <form action="../model/verificarlogin.php" method="POST">
-            <label for="email">Email:
-                <input type="email" name="cxemail" id="email">
+            <img src="../img/logo.png" alt=""><br />
+            <label for="email">Email
+                <input type="email" class="caixa cxinput" name="cxemail" id="email">
             </label>
-            <label for="senha">Senha:
-                <input type="password" name="cxsenha" id="senha">
+            <label for="senha">Senha
+                <input type="password" class="caixa cxinput" name="cxsenha" id="senha">
             </label>
-            <input type="radio" name="checkcargo" value="func">Funcionario
-            <input type="radio" name="checkcargo" value="adm">Administrador
+            <div class="radiobtn">
+                <input type="radio" id="inptfunc" class="inptrdbtn" name="checkcargo" value="func">
+                <label for="inptfunc">Funcionario</label>
+                <input type="radio" id="inptadm" class="inptrdbtn" name="checkcargo" value="adm">
+                <label for="inptadm">Administrador</label>
 
-            <input type="submit" name="btnLogar" value="Acessar">
+            </div>
+            <input type="submit" class="caixa btnlogar" name="btnLogar" value="Entrar">
         </form>
     </div>
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/06/2024 às 06:22
+-- Tempo de geração: 01/07/2024 às 05:22
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -63,7 +63,7 @@ CREATE TABLE `tbfuncionarios` (
 --
 
 INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
-(1, 'Domenico', 18, '1140028922', 'domenico@funcionario.com', '123');
+(7, 'Domenico', 19, '11940028922', 'domenico@funcionario.com', '123');
 
 -- --------------------------------------------------------
 
@@ -72,6 +72,7 @@ INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `em
 --
 
 CREATE TABLE `tbprodutos` (
+  `cod` int(11) NOT NULL,
   `produto` varchar(200) DEFAULT NULL,
   `qtde` int(11) DEFAULT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
@@ -95,6 +96,12 @@ ALTER TABLE `tbfuncionarios`
   ADD PRIMARY KEY (`id_funcionario`);
 
 --
+-- Índices de tabela `tbprodutos`
+--
+ALTER TABLE `tbprodutos`
+  ADD PRIMARY KEY (`cod`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -108,7 +115,13 @@ ALTER TABLE `tbadms`
 -- AUTO_INCREMENT de tabela `tbfuncionarios`
 --
 ALTER TABLE `tbfuncionarios`
-  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `tbprodutos`
+--
+ALTER TABLE `tbprodutos`
+  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

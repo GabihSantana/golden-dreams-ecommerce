@@ -30,6 +30,7 @@
             if ($dados) {
                 $funcionario = new Funcionario;
                 $funcionario->setNome($dados['nome']);
+                $funcionario->setIdade($dados['idade']);
 
                 $_SESSION['funcionario'] = $funcionario->getNome();
                 header("Location: ../view/menufunc.php");

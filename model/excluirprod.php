@@ -1,12 +1,17 @@
 <?php
    
    include_once '../factory/conexaobd.php';
-   $cod=$_GET["idProd"];
-   $excluir= "delete from tbprodutos where cod='$cod'";
+   
+   $cod = $_GET['id'];
+   $excluir= "DELETE from tbprodutos where cod = :codigo ";
 
-   $executar = mysqli_query($conn,$excluir);
+   $conn = new CaminhoBd;
 
-   if($executar){
+   $exclusao = $conn->getConexaoBd()->prepare($excluir); 
+   $exclusao->bindParam(':codigo', $cod);
+   $exclusao->execute();
+
+   if($exclusao){
      echo "<script>alert('Produto excluido com sucesso');</script>";
      echo "<a href='listarproduto.php'>Voltar</a>";
    }
