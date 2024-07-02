@@ -58,11 +58,14 @@
 
                 if ($cadastrar->rowCount())
                 { 
-                echo "
-                <script> alert('Produto cadastrado com sucesso!') 
-                </script>";
-                header("Location: ../view/menufunc.php");
-                exit;
+                if(isset($_SESSION['funcionario'])){
+                    echo('<script>window.alert("Produto cadastrado com sucesso!");window.location="../view/menufunc.php";</script>');
+                    exit;
+                }else{
+                    echo('<script>window.alert("Produto cadastrado com sucesso!");window.location="../view/menuadm.php";</script>');
+                    exit;
+                }
+
                 // Verifica se a consulta SQL foi executada com sucesso e exibe uma mensagem de sucesso.
                 }
                 else
@@ -83,12 +86,12 @@
                     // Se o erro no índice atual não estiver vazio, concatena a mensagem de erro na variável $totalerro.
                 }
 
-                echo('<script>window.alert("'.$totalerro.'");window.location="cadastro.php";</script>'); // Exibe um alerta JavaScript com as mensagens de erro e redireciona o usuário de volta para a página "cadastro.php".
+                echo('<script>window.alert("'.$totalerro.'");window.location="../view/telacadprod.php";</script>'); // Exibe um alerta JavaScript com as mensagens de erro e redireciona o usuário de volta para a página "cadastro.php".
             }
         } else {
         // Se não houve erros durante a validação da imagem.
 
-            echo('<script>window.alert("Você não selecionou nenhuma arquivo!");window.location="../view/cadastro.php";</script>'); // Exibe um alerta JavaScript informando ao usuário que nenhum arquivo foi selecionado e redireciona-o de volta para a página "cadastro.php".
+            echo('<script>window.alert("Você não selecionou nenhuma arquivo!");window.location="../view/telacadprod.php";</script>'); // Exibe um alerta JavaScript informando ao usuário que nenhum arquivo foi selecionado e redireciona-o de volta para a página "cadastro.php".
         }
     }
     

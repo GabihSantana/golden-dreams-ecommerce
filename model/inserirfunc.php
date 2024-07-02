@@ -29,11 +29,10 @@
         $cadastrarFunc->execute();
 
         if($cadastrarFunc->rowCount()){
-            echo "Dados cadastrado com sucesso!";
+            echo('<script>window.alert("Funcionario cadastrado com sucesso!");window.location="../view/menuadm.php";</script>');
         }
         else{
-            echo "Dados não cadastrado";
-        }
+            echo('<script>window.alert("ERRO - Funcionario não cadastrado!");window.location="../view/menuadm.php";</script>');        }
     } else{
         "Campos em branco";
     }

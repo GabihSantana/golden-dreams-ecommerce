@@ -1,24 +1,37 @@
-/*body{
-    background-image: url("../img/Designer\ \(2\).jpeg");
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body{
+    background-image: url("../img/Designerz.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}*/
-.LoginField{
+    font-family: "Playfair Display", serif;
+}
+
+.btvoltar img{
+    width: 40px;
+    margin: 15px 15px 0px 15px;
+}
+
+.LoginField, .inptsinfo{
     background-color: #132532;
     display: flex;
     margin: auto;
-    margin-top: 100px;
     width: 50%;
     border-radius: 8px;
     padding: 25px;
     justify-content: center;
     color: #fff;
     font-weight: bold;
-    border: 2px solid #B7A278;
+    border: 2px solid #D9C7B8;
     box-shadow: 0px 0px 0px #000,
-    0 0 25px #B7A278,
-    0 0 50px #545755;
+    0 0 25px #B8A290,
+    0 0 50px #27272D;
+    margin-bottom: 19px;
+}
+
+.LoginField{
+    margin-top: 100px;
 }
 
 .LoginField img{
@@ -29,7 +42,7 @@
     flex-direction: column;
 }
 
-.caixa{
+.caixa, .btnenviar{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -43,7 +56,7 @@
     margin-bottom: 20px;
 }
 
-.btnlogar{
+.btnlogar, .btnenviar{
     margin-top: 25px;
     margin-bottom: 25px;
     width: 10vw;
@@ -57,7 +70,7 @@
     font-size: 1rem;
 }
 
-.btnlogar:hover{
+.btnlogar:hover, .btnenviar:hover{
     background: linear-gradient(45deg, #E6D9B6, #B7A278, #757B77);
     color: #fff;
 }
@@ -75,3 +88,29 @@
     flex: 1 1 6px; 
 }
 
+.inptinfo{
+    color: #fff;
+}
+
+.inptfile{
+    color: #B7A278;
+}
+
+.crud{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.inptinfo:disabled {
+    color: #fff !important; 
+    cursor: not-allowed;
+}
+
+.btexcluir img, .btnalterar img{
+    width: 30px;
+}
+
+.fotos{
+    width: 300px;
+}

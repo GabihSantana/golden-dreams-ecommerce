@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01/07/2024 às 05:22
+-- Tempo de geração: 02/07/2024 às 06:02
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -63,7 +63,8 @@ CREATE TABLE `tbfuncionarios` (
 --
 
 INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
-(7, 'Domenico', 19, '11940028922', 'domenico@funcionario.com', '123');
+(6, 'Isabella', 18, '123698547', 'isabella@gmail.com', '1234'),
+(7, 'Domenico', 19, '40028922', 'domenico@funcionario.com', '123');
 
 -- --------------------------------------------------------
 
@@ -72,12 +73,20 @@ INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `em
 --
 
 CREATE TABLE `tbprodutos` (
-  `cod` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `produto` varchar(200) DEFAULT NULL,
   `qtde` int(11) DEFAULT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
-  `foto` varchar(500) DEFAULT NULL
+  `foto` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbprodutos`
+--
+
+INSERT INTO `tbprodutos` (`id`, `produto`, `qtde`, `valor`, `foto`) VALUES
+(1, 'Anel', 3, 3.00, '3e4425b47be6bfe5c649fa770c1e33bc.jpg'),
+(2, 'anel', 4, 58.00, 'd089a28d3aef5ae17033cd0627772763.jpg');
 
 --
 -- Índices para tabelas despejadas
@@ -99,7 +108,7 @@ ALTER TABLE `tbfuncionarios`
 -- Índices de tabela `tbprodutos`
 --
 ALTER TABLE `tbprodutos`
-  ADD PRIMARY KEY (`cod`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -121,7 +130,7 @@ ALTER TABLE `tbfuncionarios`
 -- AUTO_INCREMENT de tabela `tbprodutos`
 --
 ALTER TABLE `tbprodutos`
-  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

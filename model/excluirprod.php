@@ -3,7 +3,7 @@
    include_once '../factory/conexaobd.php';
    
    $cod = $_GET['id'];
-   $excluir= "DELETE from tbprodutos where cod = :codigo ";
+   $excluir= "DELETE from tbprodutos where id = :codigo ";
 
    $conn = new CaminhoBd;
 
@@ -12,10 +12,9 @@
    $exclusao->execute();
 
    if($exclusao){
-     echo "<script>alert('Produto excluido com sucesso');</script>";
-     echo "<a href='listarproduto.php'>Voltar</a>";
+    echo('<script>window.alert("Produto excluido com sucesso");window.location="listarprod.php";</script>'); 
    }
    else{
-    echo "<script>alert('Dado não encontrado');</script>"; 
+    echo('<script>window.alert("Produto não encontrado");window.location="listarprod.php";</script>'); 
    }
 ?>

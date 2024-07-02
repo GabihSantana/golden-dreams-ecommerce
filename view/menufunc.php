@@ -6,8 +6,6 @@
         header("Location: ../view/telalogin.php?erro=true");
         exit;
       }
-
-    echo "Olá ". $_SESSION['funcionario'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,17 +18,18 @@
     <title>Menu</title>
 </head>
 <body>
-<section id="mainmenu">
+    <?php echo "<h2>Olá " . $_SESSION['funcionario'] . "!</h2>"; ?>
+    <section id="mainmenu">
         <div class="opcoes">
-                <a href="telacadprod.php" class="opc2">
+                <a href="telacadprod.php" class="opc1">
                     <img src="../img/adicionar-produto.png" alt="">    
                     Cadastrar Produto
                 </a>
-                <a href="../model/listarprod.php" class="opc4">
+                <a href="../model/listarprod.php" class="opc2">
                     <img src="../img/lista-de-controle.png" alt="">  
                     Listar Produtos
                 </a>
-                <a href="../model/listarprod.php" class="opc5">
+                <a href="../model/listarprod.php" class="opc3">
                     <img src="../img/codificacao-da-web.png" alt="">
                     Página Exibição
                 </a>

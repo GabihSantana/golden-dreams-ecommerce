@@ -7,7 +7,6 @@
         exit;
       }
 
-    echo "Olá ". $_SESSION['adm'];
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +20,7 @@
     <title>Menu</title>
 </head>
 <body>
+    <?php echo "<h2>Olá " . $_SESSION['adm'] . "!</h2>"; ?>
     <section id="mainmenu">
         <div class="opcoes">
                 <a href="telacadfunc.php" class="opc1">
