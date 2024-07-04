@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include_once "cabecalho.php";
 
     if (!isset($_SESSION['adm'])) {
@@ -17,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/menu.css">
-    <title>Menu</title>
+    <title>Menu Administrador</title>
 </head>
 <body>
     <?php echo "<h2>Olá " . $_SESSION['adm'] . "!</h2>"; ?>
@@ -31,15 +30,19 @@
                     <img src="../img/adicionar-produto.png" alt="">    
                     Cadastrar Produto
                 </a>
-                <a href="../model/listarfunc.php" class="opc3">
+                <a href="listarfunc.php" class="opc3">
                     <img src="../img/gerenciamento-de-projetos.png" alt="">  
                     Listar Funcionario
                 </a>
-                <a href="../model/listarprod.php" class="opc4">
+                <a href="listarprod.php" class="opc4">
                     <img src="../img/lista-de-controle.png" alt="">  
                     Listar Produtos
                 </a>
-                <a href="../model/listarprod.php" class="opc5">
+                <a href="buscarprod.php" class="opc4">
+                    <img src="../img/lupa.png" alt="">  
+                    Buscar Produto
+                </a>
+                <a href="vitrine.php" class="opc5">
                     <img src="../img/codificacao-da-web.png" alt="">
                     Página Exibição
                 </a>

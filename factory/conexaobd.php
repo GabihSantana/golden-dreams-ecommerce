@@ -1,4 +1,6 @@
 <?php
+
+    // criando a classe do bd para utilizar ao longo das páginas
     class CaminhoBd{
         public static $usuario = "root";
         public static $senha = "";

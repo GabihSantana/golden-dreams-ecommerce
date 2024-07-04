@@ -1,7 +1,12 @@
 <?php
-    session_start();
     include_once "cabecalho.php";
+
+    if (!isset($_SESSION['adm'])) {
+        header("Location: ../view/telalogin.php?erro=true");
+        exit;
+      }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

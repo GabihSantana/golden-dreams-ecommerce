@@ -1,15 +1,17 @@
 .custom-navbar {
     height: 100px; 
+    width: 100%;
     background-color: #132532;
 }
 .custom-navbar .nav-wrapper {
-    height: 100%; /* Faz o wrapper ocupar toda a altura da navbar */
+    height: 100%; 
+    width: 100%;
 }
 
-.custom-navbar .logo img {
+.custom-navbar img {
     z-index: 1;
     border-radius: 8px;
-    width: 32vh;
+    width: 250px;
 }
 
 .custom-navbar .nav-wrapper ul li a {

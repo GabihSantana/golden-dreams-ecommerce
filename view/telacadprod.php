@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     include_once "cabecalho.php";
 ?>
 
@@ -35,6 +34,5 @@
             <br/><br/>
         </form>
     </div>
-    <br/>
 </body>
 </html>

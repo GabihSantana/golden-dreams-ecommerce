@@ -8,8 +8,8 @@
     function verificaBanco($conexaobd, $tabela, $email, $senha){
         $sqlquery = "SELECT * FROM $tabela WHERE email = :email AND senha = :senha";
         $verificarLogin = $conexaobd->getConexaoBd()->prepare($sqlquery);
-        $verificarLogin->bindParam(':email', $email);
-        $verificarLogin->bindParam(':senha', $senha);
+        $verificarLogin->bindParam(':email', $email, PDO::PARAM_STR);
+        $verificarLogin->bindParam(':senha', $senha, PDO::PARAM_STR);
         $verificarLogin->execute();
 
         $registro = $verificarLogin->fetch(PDO::FETCH_ASSOC);
@@ -27,11 +27,13 @@
             $tb = "tbfuncionarios";
             $conexaobd = new CaminhoBd;
             $dados = verificaBanco($conexaobd, $tb, $email, $senha);
+
             if ($dados) {
                 $funcionario = new Funcionario;
-                $funcionario->setNome($dados['nome']);
-                $funcionario->setIdade($dados['idade']);
+                $funcionario->setUsuario($dados['nome'], $dados['idade'], $dados['telefone'], $dados['email'], $dados['senha']);
 
+                // guardando as informações do obj funcionario através do serialize
+                $_SESSION['funcobj'] = serialize($funcionario);
                 $_SESSION['funcionario'] = $funcionario->getNome();
                 header("Location: ../view/menufunc.php");
                 exit;
@@ -45,18 +47,20 @@
             $conexaobd = new CaminhoBd;
             $tb = "tbadms";
             $dados = verificaBanco($conexaobd, $tb, $email, $senha);
-    
+
             if ($dados) {
                 $adm = new Administrador;
-                $adm->setNome($dados['nome']);
 
+                $adm->setUsuario($dados['nome'], $dados['idade'], $dados['telefone'], $dados['email'], $dados['senha']);
+
+                $_SESSION['admobj'] = serialize($adm);
                 $_SESSION['adm'] = $adm->getNome();
                 header("Location: ../view/menuadm.php");
-                exit;
+                exit();
             }
             else{
                 header("Location: ../view/telalogin.php?failaccess=true");
-                exit;
+                exit();
             }
         }
         else{
@@ -64,7 +68,7 @@
             exit;
         }
 
-    }else{
+    } else {
         header("Location: ../view/telalogin.php?failaccess");
         exit;
     }

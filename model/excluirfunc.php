@@ -1,21 +1,18 @@
 <?php
     include_once '../factory/conexaobd.php';
+    include_once "../view/cabecalho.php";
+    include_once "../control/dadofunc.php";
 
     $cod = $_GET['id'];
-    $query = "DELETE from tbfuncionarios WHERE id_funcionario = :cod";
-
-    $conexao = new CaminhoBd;
-
-    $exclusao = $conexao->getConexaoBd()->prepare($query); 
-    $exclusao->bindParam(':cod', $cod);
-    $exclusao->execute();
+    $func = new Funcionario();
+    
+    $excluir = $func->deletarFuncionario($cod);
  
-    if($exclusao){
-      echo "<script>alert('Funcionário excluido com sucesso!');</script>";
-      echo "<a href='listarfunc.php'>Voltar</a>";
+    if($excluir){
+      echo('<script>window.alert("Funcionário excluido com sucesso!");window.location="../view/listarfunc.php";</script>'); 
     }
     else{
-     echo "<script>alert('Funcionario não encontrado!');</script>"; 
+      echo('<script>window.alert("Funcionário não encontrado!");window.location="../view/listarfunc.php";</script>'); 
     }
 
 ?>
