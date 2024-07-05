@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    background-color: #132532;
+    font-family: 'Playfair Display', serif;
+}
+
+.display_produtos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    place-items: center;
+    padding: 25px;
+}
+
+.card {
+    border: 1px solid #bdbdbd;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+    background-color: #132532;
+    max-width: 250px; 
+    margin: auto; 
+}
+
+.card:hover {
+    transform: scale(1.05);
+    border: 2px solid;
+    border-image: linear-gradient(-45deg, #F8E7A0, #B7A278, #E6D9B6) 1;
+    border-radius: 8px;
+}
+
+.card img {
+    width: 100%; 
+    height: auto;
+    border-radius: 8px;
+}
+
+.card-title {
+    color: #000 !important;
+    font-weight: bold !important;
+    margin-top: 10px;
+}
+
+.card-content {
+    font-weight: bold;
+    color: #fff;
+}
+
+.card-action a {
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px; 
+    font-weight: bold;
+    font-size: 4rem;
+    font-family: "Great Vibes", cursive;
+    color: #B7A278;
+    text-shadow: 2px 2px 4px rgba(158, 173, 16, 0.5);
+}
+
+hr {
+    width: 40vw; 
+    height: 1px;
+    background-color: #bdbdbd; 
+    border: none; 
+    margin: 40px auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .display_produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .display_produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 600px) {
+    .display_produtos {
+        grid-template-columns: 1fr 1fr;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 3rem; /* Reduz o tamanho do título h2 para telas menores */
+    }
+}
+
+@media screen and (max-width: 399px) {
+    .display_produtos {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    h2 {
+        font-size: 2.5rem; /* Ajuste adicional para telas muito pequenas */
+    }
+}
