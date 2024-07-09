@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/07/2024 às 02:36
+-- Tempo de geração: 09/07/2024 às 06:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,68 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bdgoldendreams`
 --
+
+DELIMITER $$
+--
+-- Procedimentos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alterarFuncionario` (IN `p_codigo` INT, IN `p_nome` VARCHAR(100), IN `p_idade` INT, IN `p_telefone` VARCHAR(20), IN `p_email` VARCHAR(100), IN `p_senha` VARCHAR(50))   BEGIN
+	UPDATE tbfuncionarios SET nome=p_nome, idade=p_idade, telefone=p_telefone, email=p_email, senha=p_senha WHERE id_funcionario=p_codigo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alterarProdutoComImg` (IN `codigo_prod` INT, IN `p_produto` VARCHAR(200), IN `p_qtde` INT, IN `p_valor` DECIMAL(10,2), IN `p_foto` VARCHAR(200))   BEGIN
+	UPDATE tbprodutos SET produto = p_produto, qtde = p_qtde, valor = p_valor, foto= p_foto WHERE id = codigo_prod;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alterarProdutoSemImg` (IN `codigo_prod` INT, IN `p_produto` VARCHAR(200), IN `p_qtde` INT, IN `p_valor` DECIMAL(10,2))   BEGIN
+	UPDATE tbprodutos SET produto = p_produto, qtde = p_qtde, valor = p_valor WHERE id = codigo_prod;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarFuncionario` (IN `codigo` INT)   BEGIN
+	
+    SELECT * FROM tbfuncionarios WHERE id_funcionario = codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarProduto` (IN `p_valor` VARCHAR(200))   BEGIN
+	SELECT * FROM tbprodutos WHERE produto LIKE CONCAT('%', p_valor, '%') ORDER BY produto;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consultarProduto` (IN `codigo_prod` INT)   BEGIN
+	SELECT * FROM tbprodutos WHERE id = codigo_prod;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `criarFuncionario` (IN `p_nome` VARCHAR(100), IN `p_idade` INT, IN `p_telefone` VARCHAR(20), IN `p_email` VARCHAR(100), IN `p_senha` VARCHAR(50))   BEGIN
+	
+    INSERT INTO tbfuncionarios(nome, idade, telefone, email, senha) VALUES (p_nome, p_idade, p_telefone, p_email, p_senha);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `criarProduto` (IN `p_produto` VARCHAR(200), IN `p_qtde` INT, IN `p_valor` DECIMAL(10,2), IN `p_foto` VARCHAR(200))   BEGIN
+    INSERT INTO tbprodutos(produto, qtde, valor, foto) VALUES (p_produto, p_qtde, p_valor, p_foto);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletarFuncionario` (IN `codigo` INT)   BEGIN
+
+	DELETE from tbfuncionarios WHERE id_funcionario = codigo;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletarProduto` (IN `codigo_produto` INT)   BEGIN
+	DELETE from tbprodutos where id = codigo_produto;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarFuncionarios` ()   BEGIN
+	SELECT * FROM tbfuncionarios;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarProdutos` ()   BEGIN
+
+	SELECT * FROM tbprodutos;
+
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -63,8 +125,8 @@ CREATE TABLE `tbfuncionarios` (
 --
 
 INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
-(1, 'Domenico', 18, '1140028923', 'domenico@funcionario.com', '123'),
-(7, 'Gabriela', 19, '123456789', 'gabi@func.com', '123');
+(7, 'Gabriela', 19, '123456789', 'gabi@func.com', '123'),
+(8, 'Ana', 23, '543215798', 'ana@func.com', '123');
 
 -- --------------------------------------------------------
 
@@ -91,14 +153,13 @@ INSERT INTO `tbprodutos` (`id`, `produto`, `qtde`, `valor`, `foto`) VALUES
 (4, 'Brinco Argola - Ouro 1k', 400, 200.00, '5f3b9007e3ad50171ba2349133a8c4d0.jpg'),
 (5, 'Brinco de Coração - 925g', 500, 100.00, '966da04f33e77adbe75e0733bf061e84.jpeg'),
 (6, 'Brinco de Pérola - Ouro 925g ', 300, 250.00, 'b55762dee8cce83308e9a966e2eb9792.jpg'),
-(7, 'Brinco de Gota - Ouro 3k', 100, 550.00, 'b9e2a7c6683a895c58ba5dd913020807.jpeg'),
-(8, 'Colar de Coração - Prata 925g', 450, 120.00, '82cd281dd5bb3de73600ef1ad1149aa7.jpg'),
+(7, 'Brinco de Gota - Ouro 3k', 100, 540.00, 'b9e2a7c6683a895c58ba5dd913020807.jpeg'),
+(8, 'Colar de Coração - Prata 925g', 450, 150.00, '82cd281dd5bb3de73600ef1ad1149aa7.jpg'),
 (9, 'Colar Olho Grego - Prata 950g', 350, 180.00, '3f335c4a41592dd4f1857a541f2fb3be.jpg'),
 (10, 'Colar Triplo de Medalhas - Ouro 5k', 300, 800.00, '22cd87e3a9a6a8bb0bb39812bdbb6a71.jpg'),
 (11, 'Gargantinlha - Prata 950g', 400, 300.00, 'b8c65da2e0f77c1e5ae5033762d557a1.jpg'),
 (12, 'Pulseira de Bolinhas - Ouro 2k', 300, 300.00, 'e17ea25c4e2822af8cedcdfa149703c0.jpg'),
-(13, 'Pulseira de Flores - Ouro 1k', 400, 250.00, '2ee2bb9e4cfe7c7d9103b408a49d9248.png'),
-(14, 'Pulseira de Pedras Coloridas - Ouro 950g', 350, 280.00, '67e55785396ba1a4d343f55616f88728.jpg');
+(27, 'Pulseira de ouro com Pedras Coloridas', 14, 120.00, '0ba8647d715ff0af7d3b2c7aaad75dac.jpg');
 
 --
 -- Índices para tabelas despejadas
@@ -136,13 +197,13 @@ ALTER TABLE `tbadms`
 -- AUTO_INCREMENT de tabela `tbfuncionarios`
 --
 ALTER TABLE `tbfuncionarios`
-  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `tbprodutos`
 --
 ALTER TABLE `tbprodutos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,4 +1,5 @@
 <?php
+    include_once "../view/cabecalho.php";
     require_once "../factory/conexaobd.php";
 
     class Produtos{
@@ -43,7 +44,7 @@
         }
 
         public function consultarProduto($id) {
-            $query = "SELECT * FROM tbprodutos WHERE id = :id";
+            $query = "CALL consultarProduto(:id)";
             $consulta = $this->conexao->getConexaoBd()->prepare($query);
             $consulta->bindParam(':id', $id, PDO::PARAM_INT);
             $consulta->execute();
@@ -52,7 +53,7 @@
         }
     
         public function alterarProdutoImg($id, $produto, $qtde, $valor, $foto) {
-            $query = "UPDATE tbprodutos SET produto=:produto, qtde=:qtde, valor=:valor, foto=:foto WHERE id=:id";
+            $query = "CALL alterarProdutoComImg(:id, :produto, :qtde, :valor, :foto)";
             $altera = $this->conexao->getConexaoBd()->prepare($query);
             $altera->bindParam(':produto', $produto, PDO::PARAM_STR);
             $altera->bindParam(':qtde', $qtde, PDO::PARAM_INT);
@@ -64,7 +65,7 @@
         }
 
         public function alterarProduto($id, $produto, $qtde, $valor) {
-            $query = "UPDATE tbprodutos SET produto=:produto, qtde=:qtde, valor=:valor WHERE id=:id";
+            $query = "CALL alterarProdutoSemImg(:id, :produto, :qtde, :valor)";
             $altera = $this->conexao->getConexaoBd()->prepare($query);
             $altera->bindParam(':produto', $produto, PDO::PARAM_STR);
             $altera->bindParam(':qtde', $qtde, PDO::PARAM_INT);
@@ -75,7 +76,7 @@
         }
 
         public function inserirProduto($prod, $qtd, $valor, $img){
-            $query = "INSERT INTO tbprodutos (produto, qtde, valor, foto) VALUES (:produto, :qtde, :valor, :nome_imagem)";
+            $query = "CALL criarProduto(:produto, :qtde, :valor, :nome_imagem)";
 
             $cadastrar = $this->conexao->getConexaoBd()->prepare($query);   
             $cadastrar->bindParam(':produto',$prod,PDO::PARAM_STR);
@@ -87,19 +88,37 @@
         }
 
         public function excluirProduto($id){
-            $query = "DELETE from tbprodutos where id = :codigo ";
+            $query = "CALL deletarProduto(:codigo)";
             $excluir = $this->conexao->getConexaoBd()->prepare($query);
             $excluir->bindParam(':codigo', $id, PDO::PARAM_INT);
             
             return $excluir->execute();
         }
 
-        public function listarProdutos(){
-            $consulta = "select * from tbprodutos";  
+        public function listarProdutos() {
+            $consulta = "CALL listarProdutos()";  
             $resultado = $this->conexao->getConexaoBd()->prepare($consulta);
-
-            return $resultado->execute();  
+            if ($resultado->execute()) {
+                return $resultado->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                if(isset($_SESSION['funcionario'])){
+                    echo('<script>window.alert("Não foi possivel listar os produtos");window.location="../view/menufunc.php";</script>');
+                }else{
+                    echo('<script>window.alert("Não foi possivel listar os produtos");window.location="../view/menuadm.php";</script>');
+                } 
+            }
         }
+
+        public function buscarProduto($produto){
+            $busca = "CALL buscarProduto(:prod)";
+            $resultado = $this->conexao->getConexaoBd()->prepare($busca);
+            $resultado->bindParam(':prod',$produto,PDO::PARAM_STR);
+
+            if ($resultado->execute()) {
+                return $resultado->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+        
 }
 
 ?>

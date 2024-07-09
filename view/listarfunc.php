@@ -1,11 +1,9 @@
 <?php
     include_once "../view/cabecalho.php";
+    include_once '../factory/conexaobd.php';
+    include_once "../control/dadofunc.php";
 
-    if(isset($_SESSION['funcionario'])){
-        echo '<a class="btvoltar" href="../view/menufunc.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
-    }else{
-        echo '<a class="btvoltar" href="../view/menuadm.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
-    }
+    include_once "../view/botaovolta.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,19 +20,10 @@
     <h2>Funcionários: </h2>
     <div class="inptsresul">
         <?php 
-        
-        include_once '../factory/conexaobd.php';
-
-        $conn = new CaminhoBd();
-        
-            $consulta = "select * from tbfuncionarios";  
-
-            $resultado = $conn->getConexaoBd()->prepare($consulta);
-            $resultado->execute();   
-
-            while ($cont = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        $func = new Funcionario();
+            $resultado = $func->listarFunc();   
+            foreach($resultado as $cont) {
         ?>
-
         <div class="results">
             <form action="">
                 <br/>

@@ -1,11 +1,7 @@
 <?php
     include_once "cabecalho.php";
 
-    if(isset($_SESSION['funcionario'])){
-        echo '<a class="btvoltar" href="../view/menufunc.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
-    }else{
-        echo '<a class="btvoltar" href="../view/menuadm.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
-    }
+    include_once "../view/botaovolta.php";
 ?>
 
 <!DOCTYPE html>

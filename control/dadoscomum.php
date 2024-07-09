@@ -1,4 +1,5 @@
 <?php
+    include_once "../view/cabecalho.php";
     require_once "../factory/conexaobd.php";
 
     class DadosComuns{

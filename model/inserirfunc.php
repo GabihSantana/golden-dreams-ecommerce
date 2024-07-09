@@ -3,7 +3,7 @@
     include_once "../control/dadofunc.php";
     include_once "../view/cabecalho.php";
 
-    $adm = new Administrador();
+    $func = new Funcionario();
 
     $nome = $_POST["cxnome"];
     $idade = $_POST["cxidade"];
@@ -12,7 +12,7 @@
     $senha = $_POST["cxsenha"];
 
     if($email != ""){
-        $cadastrarFunc = $adm->inserirFuncionario($nome, $idade, $telefone, $email, $senha);
+        $cadastrarFunc = $func->inserirFuncionario($nome, $idade, $telefone, $email, $senha);
 
         if($cadastrarFunc){
             echo('<script>window.alert("Funcionario cadastrado com sucesso!");window.location="../view/menuadm.php";</script>');

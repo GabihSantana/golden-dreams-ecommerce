@@ -1,4 +1,5 @@
 <?php
+    include_once "../view/cabecalho.php";
     include_once "dadoscomum.php";
     require_once "../factory/conexaobd.php";
     
@@ -18,8 +19,21 @@
             $this->setSenha($senha);
         }
 
+        public function inserirFuncionario($nome, $idade, $telefone, $email, $senha){
+            $sqlquery = "CALL criarFuncionario(:nome, :idade, :telefone, :email, :senha)";
+            $cadastrarFunc = $this->conexao->getConexaoBd()->prepare($sqlquery);
+            $cadastrarFunc->bindParam(':nome', $nome, PDO::PARAM_STR);
+            $cadastrarFunc->bindParam(':idade', $idade, PDO::PARAM_INT);
+            $cadastrarFunc->bindParam(':telefone', $telefone, PDO::PARAM_STR);
+            $cadastrarFunc->bindParam(':email', $email, PDO::PARAM_STR);
+            $cadastrarFunc->bindParam(':senha', $senha, PDO::PARAM_STR);
+            
+            return $cadastrarFunc->execute();
+        }
+        
+
         public function consultarFuncionario($id) {
-            $query = "SELECT * FROM tbfuncionarios WHERE id_funcionario = :cod";
+            $query = "CALL buscarFuncionario(:cod)";
             $consulta = $this->conexao->getConexaoBd()->prepare($query); 
             $consulta->bindParam(':cod', $id, PDO::PARAM_INT);
             $consulta->execute();
@@ -27,7 +41,7 @@
         }
 
         public function alterarFuncionario($cod, $nome, $idade, $tel, $email, $senha){
-            $query = "UPDATE tbfuncionarios SET nome=:nome, idade=:idade, telefone=:telefone, email=:email, senha=:senha WHERE id_funcionario=:cod";
+            $query = "CALL alterarFuncionario(:cod, :nome, :idade, :telefone, :email, :senha)";
             $altera = $this->conexao->getConexaoBd()->prepare($query); 
             $altera->bindParam(':cod', $cod, PDO::PARAM_INT);
             $altera->bindParam(':nome', $nome, PDO::PARAM_STR);
@@ -39,6 +53,20 @@
             return $altera->execute();
         }
 
+        public function deletarFuncionario($cod){
+            $query = "CALL deletarFuncionario(:cod)";
+            $exclusao = $this->conexao->getConexaoBd()->prepare($query); 
+            $exclusao->bindParam(':cod', $cod, PDO::PARAM_INT);
 
+            return $exclusao->execute();
+        }
+
+        public function listarFunc(){
+            $query = "CALL listarFuncionarios()";
+            $resultado = $this->conexao->getConexaoBd()->prepare($query); 
+            if($resultado->execute()){
+                return $resultado->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
     }
 ?>

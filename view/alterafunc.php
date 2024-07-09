@@ -6,12 +6,7 @@
     $func = new Funcionario();
 
     $info = $func->consultarFuncionario($_GET['id']);
-
-    if(isset($_SESSION['funcionario'])){
-        echo '<a class="btvoltar" href="../view/menufunc.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
-    }else{
-        echo '<a class="btnvoltarpag" href="../view/menuadm.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a><br />';
-    }
+    echo '<a class="btvoltar" href="../view/listarfunc.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
     echo "Funcionário: {$info['id_funcionario']}";
 ?>
 

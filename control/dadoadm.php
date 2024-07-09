@@ -19,26 +19,6 @@
             $this->setSenha($senha);
         }
 
-        public function deletarFuncionario($cod){
-            $query = "DELETE from tbfuncionarios WHERE id_funcionario = :cod";
-            $exclusao = $this->conexao->getConexaoBd()->prepare($query); 
-            $exclusao->bindParam(':cod', $cod, PDO::PARAM_INT);
-
-            return $exclusao->execute();
-        }
-
-        public function inserirFuncionario($nome, $idade, $telefone, $email, $senha){
-            $sqlquery = "INSERT INTO tbfuncionarios(nome, idade, telefone, email, senha) 
-                        VALUES (:nome, :idade, :telefone, :email, :senha)";
-            $cadastrarFunc = $this->conexao->getConexaoBd()->prepare($sqlquery);
-            $cadastrarFunc->bindParam(':nome', $nome, PDO::PARAM_STR);
-            $cadastrarFunc->bindParam(':idade', $idade, PDO::PARAM_INT);
-            $cadastrarFunc->bindParam(':telefone', $telefone, PDO::PARAM_STR);
-            $cadastrarFunc->bindParam(':email', $email, PDO::PARAM_STR);
-            $cadastrarFunc->bindParam(':senha', $senha, PDO::PARAM_STR);
-            
-            return $cadastrarFunc->execute();
-        }
 
     }
 ?>

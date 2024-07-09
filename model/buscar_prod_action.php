@@ -1,6 +1,7 @@
 <?php
     require_once '../factory/conexaobd.php';
     include_once "../view/cabecalho.php";
+    include_once "../control/dadoprod.php";
 
     echo '<a class="btvoltar" href="../view/buscarprod.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
  
@@ -23,17 +24,13 @@
         $campos_form = filter_input_array(INPUT_GET, FILTER_DEFAULT);
     
         if(!empty($campos_form['btnPesquisar'])){
-            $dado = "%" . $campos_form['txtPesquisar'] . "%";
+            $dado = $campos_form['txtPesquisar'];
     
-            $sql = "SELECT * FROM tbprodutos WHERE produto LIKE :valor ORDER BY produto";
-            $conexao = new CaminhoBd();
-            $consulta = $conexao->getConexaoBd()->prepare($sql);
-            $consulta->bindParam(':valor', $dado, PDO::PARAM_STR);
-            $consulta->execute(); 
+            $prod = new Produtos();
+            $resul = $prod->buscarProduto($dado);
 
             //exibindo os resultados
-            while($registro = $consulta->fetch(PDO::FETCH_ASSOC)){
-                extract($registro);
+            foreach($resul as $registro){
             ?>
             <div class="results">
                 <form action="">

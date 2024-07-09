@@ -1,5 +1,7 @@
 <?php
     include_once "../view/cabecalho.php";
+    include_once "../control/dadoprod.php";
+    include_once "../factory/conexaobd.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,16 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../css/pages.css">
-    <title>Exibir Produto</title>
+    <title>Vitrine</title>
 </head>
 <body>
     <?php
-        include_once '../factory/conexaobd.php';
-        $conn = new CaminhoBd();
-
-        $consulta = "SELECT * FROM tbprodutos";  
-        $resultado = $conn->getConexaoBd()->prepare($consulta);
-        $resultado->execute();   
+        $prod = new Produtos();
+        $resultado = $prod->listarProdutos();
     ?>
 
     <h2>Produtos</h2>
@@ -27,7 +25,7 @@
     <div class="display_produtos">
         
     <?php
-        while ($cont = $resultado->fetch(PDO::FETCH_ASSOC)) {
+        foreach ($resultado as $cont) {
     ?>
         <div class="card">
             <div class="card-image">

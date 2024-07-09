@@ -1,12 +1,12 @@
 <?php
     include_once '../factory/conexaobd.php';
     include_once "../view/cabecalho.php";
-    include_once "../control/dadoadm.php";
+    include_once '../control/dadofunc.php';
 
     $cod = $_GET['id'];
-    $adm = new Administrador();
+    $func = new Funcionario();
     
-    $excluir = $adm->deletarFuncionario($cod);
+    $excluir = $func->deletarFuncionario($cod);
  
     if($excluir){
       echo('<script>window.alert("Funcionário excluido com sucesso!");window.location="../view/listarfunc.php";</script>'); 
