@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/07/2024 às 06:14
+-- Tempo de geração: 10/08/2024 às 04:00
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -81,6 +81,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listarProdutos` ()   BEGIN
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verificaAdm` (IN `p_email` VARCHAR(100), IN `p_senha` VARCHAR(50))   BEGIN
+	SELECT * FROM tbadms WHERE email = p_email AND senha = p_senha;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verificaFunc` (IN `p_email` VARCHAR(100), IN `p_senha` VARCHAR(50))   BEGIN
+    SELECT * FROM tbfuncionarios WHERE email = p_email AND senha = p_senha;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -126,7 +134,7 @@ CREATE TABLE `tbfuncionarios` (
 
 INSERT INTO `tbfuncionarios` (`id_funcionario`, `nome`, `idade`, `telefone`, `email`, `senha`) VALUES
 (7, 'Gabriela', 19, '123456789', 'gabi@func.com', '123'),
-(8, 'Ana', 23, '543215798', 'ana@func.com', '123');
+(11, 'Julio', 22, '11954342324', 'julio@func.com', '123');
 
 -- --------------------------------------------------------
 
@@ -147,7 +155,7 @@ CREATE TABLE `tbprodutos` (
 --
 
 INSERT INTO `tbprodutos` (`id`, `produto`, `qtde`, `valor`, `foto`) VALUES
-(1, 'Anel de Prata 925g', 100, 130.00, '6c2f73ae138b9abeee43b4bc9aff946a.jpg'),
+(1, 'Anel Diamante Prata 950g', 100, 130.00, '6c2f73ae138b9abeee43b4bc9aff946a.jpg'),
 (2, 'Anel Aliança - Prata 950g', 350, 150.00, '58e5bfeed2ccb83076f2ff40263d973c.jpg'),
 (3, 'Anel de Patinhas de Animal - Ouro 1k', 100, 400.00, 'b0a3df711d1ffebf470f773114477a88.jpg'),
 (4, 'Brinco Argola - Ouro 1k', 400, 200.00, '5f3b9007e3ad50171ba2349133a8c4d0.jpg'),
@@ -155,11 +163,10 @@ INSERT INTO `tbprodutos` (`id`, `produto`, `qtde`, `valor`, `foto`) VALUES
 (6, 'Brinco de Pérola - Ouro 925g ', 300, 250.00, 'b55762dee8cce83308e9a966e2eb9792.jpg'),
 (7, 'Brinco de Gota - Ouro 3k', 100, 540.00, 'b9e2a7c6683a895c58ba5dd913020807.jpeg'),
 (8, 'Colar de Coração - Prata 925g', 450, 150.00, '82cd281dd5bb3de73600ef1ad1149aa7.jpg'),
-(9, 'Colar Olho Grego - Prata 950g', 350, 180.00, '3f335c4a41592dd4f1857a541f2fb3be.jpg'),
+(9, 'Colar Olho Grego - Prata 950g', 300, 180.00, '3f335c4a41592dd4f1857a541f2fb3be.jpg'),
 (10, 'Colar Triplo de Medalhas - Ouro 5k', 300, 800.00, '22cd87e3a9a6a8bb0bb39812bdbb6a71.jpg'),
 (11, 'Gargantinlha - Prata 950g', 400, 300.00, 'b8c65da2e0f77c1e5ae5033762d557a1.jpg'),
-(12, 'Pulseira de Bolinhas - Ouro 2k', 300, 300.00, 'e17ea25c4e2822af8cedcdfa149703c0.jpg'),
-(27, 'Pulseira de ouro com Pedras Coloridas', 14, 120.00, '0ba8647d715ff0af7d3b2c7aaad75dac.jpg');
+(12, 'Pulseira de Bolinhas - Ouro 2k', 300, 300.00, 'e17ea25c4e2822af8cedcdfa149703c0.jpg');
 
 --
 -- Índices para tabelas despejadas
@@ -197,13 +204,13 @@ ALTER TABLE `tbadms`
 -- AUTO_INCREMENT de tabela `tbfuncionarios`
 --
 ALTER TABLE `tbfuncionarios`
-  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tbprodutos`
 --
 ALTER TABLE `tbprodutos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,17 +5,6 @@
     include_once "../control/dadofunc.php";
     include_once "../control/dadoadm.php";
 
-    function verificaBanco($conexaobd, $tabela, $email, $senha){
-        $sqlquery = "SELECT * FROM $tabela WHERE email = :email AND senha = :senha";
-        $verificarLogin = $conexaobd->getConexaoBd()->prepare($sqlquery);
-        $verificarLogin->bindParam(':email', $email, PDO::PARAM_STR);
-        $verificarLogin->bindParam(':senha', $senha, PDO::PARAM_STR);
-        $verificarLogin->execute();
-
-        $registro = $verificarLogin->fetch(PDO::FETCH_ASSOC);
-        return $registro;
-    }
-
     if(isset($_POST['btnLogar'])){
         $email = $_POST["cxemail"];
         $senha = $_POST["cxsenha"];
@@ -24,17 +13,14 @@
         $valido = $email != NULL && $senha != NULL && $cargo != NULL; 
 
         if($valido && $cargo == "func"){
-            $tb = "tbfuncionarios";
-            $conexaobd = new CaminhoBd;
-            $dados = verificaBanco($conexaobd, $tb, $email, $senha);
-
+            $func = new Funcionario; 
+            $dados = $func->acesso($email, $senha);
             if ($dados) {
-                $funcionario = new Funcionario;
-                $funcionario->setUsuario($dados['nome'], $dados['idade'], $dados['telefone'], $dados['email'], $dados['senha']);
+                $func->setUsuario($dados['nome'], $dados['idade'], $dados['telefone'], $dados['email'], $dados['senha']);
 
                 // guardando as informações do obj funcionario através do serialize
-                $_SESSION['funcobj'] = serialize($funcionario);
-                $_SESSION['funcionario'] = $funcionario->getNome();
+                $_SESSION['funcobj'] = serialize($func);
+                $_SESSION['funcionario'] = $func->getNome();
                 header("Location: ../view/menufunc.php");
                 exit;
             } 
@@ -44,11 +30,9 @@
             }
         }
         else if($valido && $cargo == "adm"){
-            $conexaobd = new CaminhoBd;
-            $tb = "tbadms";
-            $dados = verificaBanco($conexaobd, $tb, $email, $senha);
-
-            if ($dados) {
+            $adm = new Administrador;
+            $dados = $adm->acessoAdm($email, $senha);
+            if ($dados != NULL) {
                 $adm = new Administrador;
 
                 $adm->setUsuario($dados['nome'], $dados['idade'], $dados['telefone'], $dados['email'], $dados['senha']);
@@ -73,3 +57,4 @@
         exit;
     }
 ?>
+	

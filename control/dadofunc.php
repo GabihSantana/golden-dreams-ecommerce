@@ -1,5 +1,4 @@
 <?php
-    include_once "../view/cabecalho.php";
     include_once "dadoscomum.php";
     require_once "../factory/conexaobd.php";
     
@@ -68,5 +67,16 @@
                 return $resultado->fetchAll(PDO::FETCH_ASSOC);
             }
         }
+
+        public function acesso($email, $senha){
+            $sqlquery = "CALL verificaFunc(:email, :senha)";
+            $verificarLogin = $this->conexao->getConexaoBd()->prepare($sqlquery);
+            $verificarLogin->bindParam(':email', $email, PDO::PARAM_STR);
+            $verificarLogin->bindParam(':senha', $senha, PDO::PARAM_STR);
+            $verificarLogin->execute();
+    
+            $registro = $verificarLogin->fetch(PDO::FETCH_ASSOC);
+            return $registro;
+            }
     }
 ?>

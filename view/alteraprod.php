@@ -24,7 +24,9 @@
         <title>Alterar Informações do Produto</title>
     </head>
     <body>
-        <?php echo "Produto: $produto_id"; ?> 
+        <?php 
+        echo '<a class="btvoltar" href="../view/listarprod.php"> <img src="../img/seta-esquerda (1).png" alt="" width="40px"> </a>';
+        echo "Produto: $produto_id"; ?> 
         <div class="inptsinfo">
             <form action="../model/altera_prod_action.php" method="POST" enctype="multipart/form-data">
             <br/>

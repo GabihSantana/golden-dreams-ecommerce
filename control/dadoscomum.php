@@ -1,13 +1,11 @@
 <?php
-    include_once "../view/cabecalho.php";
-    require_once "../factory/conexaobd.php";
-
     class DadosComuns{
         private $nome;
         private $idade;
         private $telefone;
         private $email;
         private $senha;
+        private $conexao;
 
         public function getNome(){
             return $this->nome;
