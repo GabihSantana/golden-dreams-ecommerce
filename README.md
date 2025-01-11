@@ -8,6 +8,10 @@ Esse foi um projeto desenvolvido para uma matéria da faculdade em conjunto com 
 - Gerenciamento de Funcionários: Adicionar, editar e excluir funcionários.
 - Controle de Estoque: Monitorar a quantidade de itens disponíveis.
 - Painel Administrativo: Interface intuitiva para gerenciar o catálogo de produtos.
+
+*Lado do funcionário:*
+- Gerenciamento de Produtos: Adicionar, editar, buscar e excluir os produtos (joias).
+- Painel Administrativo: Interface intuitiva para gerenciar o catálogo de produtos.
   
 *Vitrine Simples:*
 - Exibição de Produtos: Mostra como os clientes veriam as joias na loja online.
